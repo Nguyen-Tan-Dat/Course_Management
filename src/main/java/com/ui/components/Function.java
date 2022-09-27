@@ -1,7 +1,7 @@
 package com.ui.components;
 
-import com.ui.PanelUI;
+import com.ui.UIPanel;
 import jiconfont.IconCode;
 
-public record Function(String name, IconCode iconCode, PanelUI panelUI) {
+public record Function(String name, IconCode iconCode, UIPanel UIPanel) {
 }

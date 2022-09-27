@@ -1,46 +1,28 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Generation Time: Feb 23, 2022 at 06:24 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.1.2
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `School`
---
-CREATE DATABASE IF NOT EXISTS `School` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `School`;
+CREATE DATABASE IF NOT EXISTS School DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE School;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Course`
+-- Table structure for table Course
 --
 
-CREATE TABLE `Course` (
-  `CourseID` int(11) NOT NULL,
-  `Title` varchar(100) NOT NULL,
-  `Credits` int(11) NOT NULL,
-  `DepartmentID` int(11) NOT NULL
+CREATE TABLE Course (
+  CourseID int(11) NOT NULL,
+  Title varchar(100) NOT NULL,
+  Credits int(11) NOT NULL,
+  DepartmentID int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `Course`
+-- Dumping data for table Course
 --
 
-INSERT INTO `Course` (`CourseID`, `Title`, `Credits`, `DepartmentID`) VALUES
+INSERT INTO Course (CourseID, Title, Credits, DepartmentID) VALUES
 (1045, 'Calculus', 4, 7),
 (1050, 'Chemistry', 4, 1),
 (1061, 'Physics', 4, 1),
@@ -55,19 +37,19 @@ INSERT INTO `Course` (`CourseID`, `Title`, `Credits`, `DepartmentID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `CourseInstructor`
+-- Table structure for table CourseInstructor
 --
 
-CREATE TABLE `CourseInstructor` (
-  `CourseID` int(11) NOT NULL,
-  `PersonID` int(11) NOT NULL
+CREATE TABLE CourseInstructor (
+  CourseID int(11) NOT NULL,
+  PersonID int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `CourseInstructor`
+-- Dumping data for table CourseInstructor
 --
 
-INSERT INTO `CourseInstructor` (`CourseID`, `PersonID`) VALUES
+INSERT INTO CourseInstructor (CourseID, PersonID) VALUES
 (1045, 5),
 (1050, 1),
 (1061, 31),
@@ -81,22 +63,22 @@ INSERT INTO `CourseInstructor` (`CourseID`, `PersonID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Department`
+-- Table structure for table Department
 --
 
-CREATE TABLE `Department` (
-  `DepartmentID` int(11) NOT NULL,
-  `Name` varchar(50) NOT NULL,
-  `Budget` double NOT NULL,
-  `StartDate` datetime NOT NULL,
-  `Administrator` int(11) DEFAULT NULL
+CREATE TABLE Department (
+  DepartmentID int(11) NOT NULL,
+  Name varchar(50) NOT NULL,
+  Budget double NOT NULL,
+  StartDate datetime NOT NULL,
+  Administrator int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `Department`
+-- Dumping data for table Department
 --
 
-INSERT INTO `Department` (`DepartmentID`, `Name`, `Budget`, `StartDate`, `Administrator`) VALUES
+INSERT INTO Department (DepartmentID, Name, Budget, StartDate, Administrator) VALUES
 (1, 'Engineering', 350000, '2007-09-01 00:00:00', 2),
 (2, 'English', 120000, '2007-09-01 00:00:00', 6),
 (4, 'Economics', 200000, '2007-09-01 00:00:00', 4),
@@ -105,20 +87,20 @@ INSERT INTO `Department` (`DepartmentID`, `Name`, `Budget`, `StartDate`, `Admini
 -- --------------------------------------------------------
 
 --
--- Table structure for table `OfficeAssignment`
+-- Table structure for table OfficeAssignment
 --
 
-CREATE TABLE `OfficeAssignment` (
-  `InstructorID` int(11) NOT NULL,
-  `Location` varchar(50) NOT NULL DEFAULT 'TP.HCM',
-  `Timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+CREATE TABLE OfficeAssignment (
+  InstructorID int(11) NOT NULL,
+  Location varchar(50) NOT NULL DEFAULT 'TP.HCM',
+  Timestamp timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `OfficeAssignment`
+-- Dumping data for table OfficeAssignment
 --
 
-INSERT INTO `OfficeAssignment` (`InstructorID`, `Location`, `Timestamp`) VALUES
+INSERT INTO OfficeAssignment (InstructorID, Location, Timestamp) VALUES
 (1, '17 Smith', '2022-02-23 17:19:21'),
 (4, '29 Adams', '2022-02-23 17:19:21'),
 (5, '37 Williams', '2022-02-23 17:19:22'),
@@ -132,19 +114,19 @@ INSERT INTO `OfficeAssignment` (`InstructorID`, `Location`, `Timestamp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `OnlineCourse`
+-- Table structure for table OnlineCourse
 --
 
-CREATE TABLE `OnlineCourse` (
-  `CourseID` int(11) NOT NULL,
-  `url` varchar(100) NOT NULL
+CREATE TABLE OnlineCourse (
+  CourseID int(11) NOT NULL,
+  url varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `OnlineCourse`
+-- Dumping data for table OnlineCourse
 --
 
-INSERT INTO `OnlineCourse` (`CourseID`, `url`) VALUES
+INSERT INTO OnlineCourse (CourseID, url) VALUES
 (2021, 'http://www.fineartschool.net/Composition'),
 (2030, 'http://www.fineartschool.net/Poetry'),
 (3141, 'http://www.fineartschool.net/Trigonometry'),
@@ -153,21 +135,21 @@ INSERT INTO `OnlineCourse` (`CourseID`, `url`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `OnsiteCourse`
+-- Table structure for table OnsiteCourse
 --
 
-CREATE TABLE `OnsiteCourse` (
-  `CourseID` int(11) NOT NULL,
-  `Location` varchar(50) NOT NULL,
-  `Days` varchar(50) NOT NULL,
-  `Time` time NOT NULL
+CREATE TABLE OnsiteCourse (
+  CourseID int(11) NOT NULL,
+  Location varchar(50) NOT NULL,
+  Days varchar(50) NOT NULL,
+  Time time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `OnsiteCourse`
+-- Dumping data for table OnsiteCourse
 --
 
-INSERT INTO `OnsiteCourse` (`CourseID`, `Location`, `Days`, `Time`) VALUES
+INSERT INTO OnsiteCourse (CourseID, Location, Days, Time) VALUES
 (1045, '121 Smith', 'MWHF', '15:30:00'),
 (1050, '123 Smith', 'MTWH', '11:30:00'),
 (1061, '234 Smith', 'TWHF', '13:15:00'),
@@ -178,22 +160,22 @@ INSERT INTO `OnsiteCourse` (`CourseID`, `Location`, `Days`, `Time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Person`
+-- Table structure for table Person
 --
 
-CREATE TABLE `Person` (
-  `PersonID` int(11) NOT NULL,
-  `Lastname` varchar(50) NOT NULL,
-  `Firstname` varchar(50) NOT NULL,
-  `HireDate` datetime DEFAULT NULL,
-  `EnrollmentDate` datetime DEFAULT NULL
+CREATE TABLE Person (
+  PersonID int(11) NOT NULL,
+  Lastname varchar(50) NOT NULL,
+  Firstname varchar(50) NOT NULL,
+  HireDate datetime DEFAULT NULL,
+  EnrollmentDate datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `Person`
+-- Dumping data for table Person
 --
 
-INSERT INTO `Person` (`PersonID`, `Lastname`, `Firstname`, `HireDate`, `EnrollmentDate`) VALUES
+INSERT INTO Person (PersonID, Lastname, Firstname, HireDate, EnrollmentDate) VALUES
 (1, 'Abercrombie', 'Kim', '1995-03-11 00:00:00', NULL),
 (2, 'Barzdukas', 'Gytis', NULL, '2005-09-01 00:00:00'),
 (3, 'Justice', 'Peggy', NULL, '2001-09-01 00:00:00'),
@@ -232,21 +214,21 @@ INSERT INTO `Person` (`PersonID`, `Lastname`, `Firstname`, `HireDate`, `Enrollme
 -- --------------------------------------------------------
 
 --
--- Table structure for table `StudentGrade`
+-- Table structure for table StudentGrade
 --
 
-CREATE TABLE `StudentGrade` (
-  `EnrollmentID` int(11) NOT NULL,
-  `CourseID` int(11) NOT NULL,
-  `StudentID` int(11) NOT NULL,
-  `Grade` decimal(3,2) DEFAULT NULL
+CREATE TABLE StudentGrade (
+  EnrollmentID int(11) NOT NULL,
+  CourseID int(11) NOT NULL,
+  StudentID int(11) NOT NULL,
+  Grade decimal(3,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `StudentGrade`
+-- Dumping data for table StudentGrade
 --
 
-INSERT INTO `StudentGrade` (`EnrollmentID`, `CourseID`, `StudentID`, `Grade`) VALUES
+INSERT INTO StudentGrade (EnrollmentID, CourseID, StudentID, Grade) VALUES
 (1, 2021, 2, '4.00'),
 (2, 2030, 2, '3.50'),
 (3, 2021, 3, '3.00'),
@@ -293,84 +275,84 @@ INSERT INTO `StudentGrade` (`EnrollmentID`, `CourseID`, `StudentID`, `Grade`) VA
 --
 
 --
--- Indexes for table `Course`
+-- Indexes for table Course
 --
-ALTER TABLE `Course`
-  ADD PRIMARY KEY (`CourseID`);
+ALTER TABLE Course
+  ADD PRIMARY KEY (CourseID);
 
 --
--- Indexes for table `CourseInstructor`
+-- Indexes for table CourseInstructor
 --
-ALTER TABLE `CourseInstructor`
-  ADD PRIMARY KEY (`CourseID`,`PersonID`);
+ALTER TABLE CourseInstructor
+  ADD PRIMARY KEY (CourseID,PersonID);
 
 --
--- Indexes for table `Department`
+-- Indexes for table Department
 --
-ALTER TABLE `Department`
-  ADD PRIMARY KEY (`DepartmentID`);
+ALTER TABLE Department
+  ADD PRIMARY KEY (DepartmentID);
 
 --
--- Indexes for table `OfficeAssignment`
+-- Indexes for table OfficeAssignment
 --
-ALTER TABLE `OfficeAssignment`
-  ADD PRIMARY KEY (`InstructorID`);
+ALTER TABLE OfficeAssignment
+  ADD PRIMARY KEY (InstructorID);
 
 --
--- Indexes for table `OnlineCourse`
+-- Indexes for table OnlineCourse
 --
-ALTER TABLE `OnlineCourse`
-  ADD PRIMARY KEY (`CourseID`);
+ALTER TABLE OnlineCourse
+  ADD PRIMARY KEY (CourseID);
 
 --
--- Indexes for table `OnsiteCourse`
+-- Indexes for table OnsiteCourse
 --
-ALTER TABLE `OnsiteCourse`
-  ADD PRIMARY KEY (`CourseID`);
+ALTER TABLE OnsiteCourse
+  ADD PRIMARY KEY (CourseID);
 
 --
--- Indexes for table `Person`
+-- Indexes for table Person
 --
-ALTER TABLE `Person`
-  ADD PRIMARY KEY (`PersonID`);
+ALTER TABLE Person
+  ADD PRIMARY KEY (PersonID);
 
 --
--- Indexes for table `StudentGrade`
+-- Indexes for table StudentGrade
 --
-ALTER TABLE `StudentGrade`
-  ADD PRIMARY KEY (`EnrollmentID`);
+ALTER TABLE StudentGrade
+  ADD PRIMARY KEY (EnrollmentID);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `Course`
+-- AUTO_INCREMENT for table Course
 --
-ALTER TABLE `Course`
-  MODIFY `CourseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4062;
+ALTER TABLE Course
+  MODIFY CourseID int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4062;
 
 --
--- AUTO_INCREMENT for table `Person`
+-- AUTO_INCREMENT for table Person
 --
-ALTER TABLE `Person`
-  MODIFY `PersonID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+ALTER TABLE Person
+  MODIFY PersonID int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT for table `StudentGrade`
+-- AUTO_INCREMENT for table StudentGrade
 --
-ALTER TABLE `StudentGrade`
-  MODIFY `EnrollmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+ALTER TABLE StudentGrade
+  MODIFY EnrollmentID int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `OnlineCourse`
+-- Constraints for table OnlineCourse
 --
-ALTER TABLE `OnlineCourse`
-  ADD CONSTRAINT `onlinecourse_ibfk_1` FOREIGN KEY (`CourseID`) REFERENCES `Course` (`CourseID`);
+ALTER TABLE OnlineCourse
+  ADD CONSTRAINT onlinecourse_ibfk_1 FOREIGN KEY (CourseID) REFERENCES Course (CourseID);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -108,32 +108,26 @@ public class MainFrame extends JFrame {
 //        top.setAccount(employee.getData()[0]);
         getContentPane().add(top, BorderLayout.NORTH);
     }
-    public static void setView(PanelUI panelUI){
+    public static void setView(UIPanel UIPanel){
         center.removeAll();
-        center.add(panelUI);
+        center.add(UIPanel);
         center.repaint();
         center.revalidate();
     }
 
     public static void setView(String name) {
-        PanelUI panelUI = null;
+        UIPanel UIPanel = null;
         for (var i : functions)
             if (i.name().equals(name)) {
-                panelUI = i.panelUI().newView();
+                UIPanel = i.UIPanel().newView();
                 break;
             }
-        if (panelUI == null) return;
+        if (UIPanel == null) return;
         center.removeAll();
-        center.add(panelUI);
+        center.add(UIPanel);
         center.repaint();
         center.revalidate();
         top.setFunction(name);
 
-    }
-
-    public static void main(String[] args) {
-        new UIManager();
-        MainFrame f=new MainFrame();
-        f.setVisible(true);
     }
 }

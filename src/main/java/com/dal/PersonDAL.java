@@ -12,11 +12,11 @@ public class PersonDAL extends DAL {
 	@Override
 	public Vector<String> columnNames() {
 		Vector<String> r = new Vector<>();
-		r.add("ID");
+		r.add("Mã");
 		r.add("Tên");
 		r.add("Họ");
-		r.add("Ngày đăng nhập");
-		r.add("Ngày sai mật khẩu");
+		r.add("Đăng nhập");
+		r.add("Đăng nhập sai");
 		return r;
 	}
 }

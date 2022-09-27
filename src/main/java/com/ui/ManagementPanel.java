@@ -26,7 +26,7 @@ public class ManagementPanel extends SeePanel {
 	}
 
 	@Override
-	public PanelUI newView() {
+	public UIPanel newView() {
 		return new ManagementPanel(control);
 	}
 

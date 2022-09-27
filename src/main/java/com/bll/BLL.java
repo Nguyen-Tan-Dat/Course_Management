@@ -23,6 +23,9 @@ public class BLL {
 		readTable();
 		newID = DAL.getMaxId() + 1;
 	}
+	public BLL(String tableName){
+		this(new DAL(tableName));
+	}
 
 	public DTO getObject(String key) {
 		return getList().get(key);
@@ -58,8 +61,10 @@ public class BLL {
 	}
 
 	public boolean delete(String id) {
-		if (DAL.delete(id))
+		if (DAL.delete(id)){
 			getList().remove(id);
+			return true;
+		}
 		return false;
 	}
 

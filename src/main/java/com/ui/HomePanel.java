@@ -10,7 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class HomePanel extends PanelUI {
+public class HomePanel extends UIPanel {
 	ArrayList<Function> functions;
 	public HomePanel(ArrayList<Function> functions) {
 		this.functions=functions;
@@ -43,7 +43,7 @@ public class HomePanel extends PanelUI {
 	}
 
 	@Override
-	public PanelUI newView() {
+	public UIPanel newView() {
 		return new HomePanel(functions);
 	}
 }

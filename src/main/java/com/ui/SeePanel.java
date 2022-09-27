@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class SeePanel extends PanelUI {
+public class SeePanel extends UIPanel {
     protected final JTable table;
     protected final BLL control;
     protected final SearchBar searchBar;
@@ -72,7 +72,7 @@ public class SeePanel extends PanelUI {
         }
     }
     @Override
-    public PanelUI newView() {
+    public UIPanel newView() {
         return new SeePanel(control);
     }
 }

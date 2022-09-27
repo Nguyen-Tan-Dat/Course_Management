@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class SettingPanel extends PanelUI {
+public class SettingPanel extends UIPanel {
 
     public SettingPanel() {
         JPanel menu = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
@@ -40,7 +40,7 @@ public class SettingPanel extends PanelUI {
     }
 
     @Override
-    public PanelUI newView() {
+    public UIPanel newView() {
         return new SettingPanel();
     }
 
