@@ -10,7 +10,9 @@ import java.util.Vector;
 
 public class DAL {
 
-
+        public ConnectSQL dal = new ConnectSQL();
+        public ConnectUnit sql = new ConnectUnit();
+        
 	protected Database database;
 	private final DTO dto;
 

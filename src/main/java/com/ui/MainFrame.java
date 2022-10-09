@@ -1,5 +1,6 @@
 package com.ui;
 
+import com.GUI.StudenGradeGui;
 import com.bll.*;
 import com.dto.DTO;
 import com.ui.components.Function;
@@ -37,22 +38,24 @@ public class MainFrame extends JFrame {
         MainFrame.employee = employee;
     }
 
-    public static ArrayList<Function> functions=new ArrayList<>();
+    public static ArrayList<Function> functions = new ArrayList<>();
     private static final Function[] allFunction = {
             new Function("Person", GoogleMaterialDesignIcons.PEOPLE, new ManagementPanel(new PersonBL())),
-            new Function("Course Instructor", GoogleMaterialDesignIcons.GROUP, new ManagementPanel(new CourseInstructorBL())),
+            new Function("Course Instructor", GoogleMaterialDesignIcons.GROUP, new CourseInstructorPN()),
             new Function("Department", GoogleMaterialDesignIcons.WEB, new ManagementPanel(new DepartmentBL())),
             new Function("Office Assignment", GoogleMaterialDesignIcons.ASSIGNMENT, new ManagementPanel(new OfficeAssignmentBL())),
             new Function("Online Course", GoogleMaterialDesignIcons.LANGUAGE, new ManagementPanel(new OnlineCourseBL())),
             new Function("Onsite Course", GoogleMaterialDesignIcons.CLASS, new ManagementPanel(new OnsiteCourseBL())),
             new Function("Course", GoogleMaterialDesignIcons.DEVELOPER_BOARD, new ManagementPanel(new CourseBL())),
-            new Function("Student Grade", GoogleMaterialDesignIcons.GRADIENT, new ManagementPanel(new StudentGradeBL())),
+            new Function("Student Grade", GoogleMaterialDesignIcons.GRADIENT, new StudenGradeGui()),
     };
-    private void activeFunction(){
+
+    private void activeFunction() {
         functions = new ArrayList<>();
         Collections.addAll(functions, allFunction);
 //        functions.add(new Function("Cài đặt", GoogleMaterialDesignIcons.SETTINGS, new SettingView()));
     }
+
     private void activeFunction(String[] active) {
         functions = new ArrayList<>();
         for (var function : allFunction) {
@@ -61,26 +64,26 @@ public class MainFrame extends JFrame {
                     functions.add(function);
             }
         }
-        functions.add(new Function("Cài đặt", GoogleMaterialDesignIcons.SETTINGS, new SettingPanel()));
     }
 
-    public static void openChild(String title,JPanel view, int width, int height) {
+    public static void openChild(String title, JPanel view, int width, int height) {
         windowChild.setTitle(title);
         MainFrame.windowChild.setContentPane(view);
         MainFrame.windowChild.setSize(width, height);
         MainFrame.windowChild.setVisible(true);
     }
 
-    public MainFrame(){
+    public MainFrame() {
         activeFunction();
         init();
     }
 
-    public 	MainFrame(String[] actives) {
+    public MainFrame(String[] actives) {
         activeFunction(actives);
         init();
     }
-    private void init(){
+
+    private void init() {
         windowChild = new JDialog(this);
         windowChild.setModal(true);
         windowChild.setResizable(false);
@@ -88,7 +91,7 @@ public class MainFrame extends JFrame {
         windowChild.setLocation(0, 0);
         windowChild.setSize(700, 700);
         windowChild.setLocationRelativeTo(null);
-        setTitle("Hệ Thống Quản Lý Khóa Học");
+        setTitle("Hệ Thống Quản Lý Khóa H�?c");
         ImageIcon logo = (ImageIcon) IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SCHOOL, 100, new Color(58, 121, 199));
         setIconImage(logo.getImage());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -108,7 +111,8 @@ public class MainFrame extends JFrame {
 //        top.setAccount(employee.getData()[0]);
         getContentPane().add(top, BorderLayout.NORTH);
     }
-    public static void setView(UIPanel UIPanel){
+
+    public static void setView(UIPanel UIPanel) {
         center.removeAll();
         center.add(UIPanel);
         center.repaint();
@@ -117,17 +121,18 @@ public class MainFrame extends JFrame {
 
     public static void setView(String name) {
         UIPanel UIPanel = null;
-        for (var i : functions)
+        for (var i : functions) {
             if (i.name().equals(name)) {
                 UIPanel = i.UIPanel().newView();
                 break;
+
             }
+        }
         if (UIPanel == null) return;
         center.removeAll();
         center.add(UIPanel);
         center.repaint();
         center.revalidate();
         top.setFunction(name);
-
     }
 }

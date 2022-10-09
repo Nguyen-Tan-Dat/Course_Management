@@ -1,5 +1,7 @@
 package com.bll;
 
+import com.dal.ConnectSQL;
+import com.dal.ConnectUnit;
 import com.dal.DAL;
 import com.dto.DTO;
 
@@ -9,6 +11,7 @@ import java.util.Vector;
 
 
 public class BLL {
+
 	protected final com.dal.DAL DAL;
 	protected HashMap<String, DTO> list;
 

@@ -1,5 +1,3 @@
-package com;
-
 import com.ui.MainFrame;
 
 import javax.swing.*;
