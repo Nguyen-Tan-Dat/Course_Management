@@ -1,6 +1,5 @@
 package com.ui;
 
-import com.GUI.StudenGradeGui;
 import com.bll.*;
 import com.dto.DTO;
 import com.ui.components.Function;
@@ -42,11 +41,11 @@ public class MainFrame extends JFrame {
     private static final Function[] allFunction = {
             new Function("Person", GoogleMaterialDesignIcons.PEOPLE, new ManagementPanel(new PersonBL())),
             new Function("Course Instructor", GoogleMaterialDesignIcons.GROUP, new CourseInstructorPN()),
-            new Function("Department", GoogleMaterialDesignIcons.WEB, new ManagementPanel(new DepartmentBL())),
-            new Function("Office Assignment", GoogleMaterialDesignIcons.ASSIGNMENT, new ManagementPanel(new OfficeAssignmentBL())),
-            new Function("Online Course", GoogleMaterialDesignIcons.LANGUAGE, new ManagementPanel(new OnlineCourseBL())),
-            new Function("Onsite Course", GoogleMaterialDesignIcons.CLASS, new ManagementPanel(new OnsiteCourseBL())),
-            new Function("Course", GoogleMaterialDesignIcons.DEVELOPER_BOARD, new ManagementPanel(new CourseBL())),
+//            new Function("Department", GoogleMaterialDesignIcons.WEB, new ManagementPanel(new DepartmentBL())),
+//            new Function("Office Assignment", GoogleMaterialDesignIcons.ASSIGNMENT, new ManagementPanel(new OfficeAssignmentBL())),
+//            new Function("Online Course", GoogleMaterialDesignIcons.LANGUAGE, new ManagementPanel(new OnlineCourseBL())),
+//            new Function("Onsite Course", GoogleMaterialDesignIcons.CLASS, new ManagementPanel(new OnsiteCourseBL())),
+//            new Function("Course", GoogleMaterialDesignIcons.DEVELOPER_BOARD, new ManagementPanel(new CourseBL())),
             new Function("Student Grade", GoogleMaterialDesignIcons.GRADIENT, new StudenGradeGui()),
     };
 

@@ -70,8 +70,6 @@ public class CourseInstructorPN extends UIPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(0, 204, 102));
-
         inputTK.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
 
         btTimkiem.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
