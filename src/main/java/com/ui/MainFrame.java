@@ -1,7 +1,6 @@
 package com.ui;
 
 import com.bll.*;
-import com.dto.DTO;
 import com.ui.components.Function;
 import com.ui.components.FunctionBar;
 import com.ui.components.GoogleMaterialDesignIcons;
@@ -17,25 +16,7 @@ import java.util.Collections;
 public class MainFrame extends JFrame {
     public static JPanel center;
     private static final TopBar top = new TopBar();
-    private static String employee_id;
-    private static DTO employee;
     public static JDialog windowChild;
-
-    public static String getEmployee_id() {
-        return employee_id;
-    }
-
-    public static DTO getEmployee() {
-        return employee;
-    }
-
-    public static void setEmployee_id(String employee_id) {
-        MainFrame.employee_id = employee_id;
-    }
-
-    public static void setEmployee(DTO employee) {
-        MainFrame.employee = employee;
-    }
 
     public static ArrayList<Function> functions = new ArrayList<>();
     private static final Function[] allFunction = {
@@ -55,16 +36,6 @@ public class MainFrame extends JFrame {
 //        functions.add(new Function("Cài đặt", GoogleMaterialDesignIcons.SETTINGS, new SettingView()));
     }
 
-    private void activeFunction(String[] active) {
-        functions = new ArrayList<>();
-        for (var function : allFunction) {
-            for (String s : active) {
-                if (function.name().equals(s))
-                    functions.add(function);
-            }
-        }
-    }
-
     public static void openChild(String title, JPanel view, int width, int height) {
         windowChild.setTitle(title);
         MainFrame.windowChild.setContentPane(view);
@@ -74,11 +45,6 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         activeFunction();
-        init();
-    }
-
-    public MainFrame(String[] actives) {
-        activeFunction(actives);
         init();
     }
 
@@ -101,8 +67,8 @@ public class MainFrame extends JFrame {
         center.setLayout(new BorderLayout());
         center.setBorder(new MatteBorder(0, 0, 20, 20, getBackground()));
         var home = new HomePanel(functions);
-        functions.add(0, new Function("Trang chủ", GoogleMaterialDesignIcons.HOME, home));
-        setView("Trang chủ");
+        functions.add(0, new Function("Home", GoogleMaterialDesignIcons.HOME, home));
+        setView("Home");
         center.add(home, BorderLayout.CENTER);
         getContentPane().add(center, BorderLayout.CENTER);
         FunctionBar functionBar = new FunctionBar(functions, getBackground());

@@ -11,7 +11,7 @@ public class SearchBar extends JPanel {
     public SearchBar(Color background) {
         setBackground(background);
         setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
-        textField = new HintTextField(" Nhập để tìm kiếm");
+        textField = new HintTextField(" Search");
         comboBox = new JComboBox<>(new String[]{});
         comboBox.setBackground(getBackground());
         comboBox.setForeground(Color.white);

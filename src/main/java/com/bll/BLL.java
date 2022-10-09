@@ -114,9 +114,9 @@ public class BLL {
 	public Vector<String> toComboBox() {
 		var names = DAL.columnNames();
 		var result = new Vector<String>();
-		names.add(0, "tất cả thông tin");
+		names.add(0, "All field");
 		for (var i : names) {
-			result.add("Tìm theo " + i);
+			result.add("Search by " + i);
 		}
 		return result;
 	}

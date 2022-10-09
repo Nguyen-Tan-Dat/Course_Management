@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import java.util.Date;
 import java.util.Vector;
 
 public class PersonDAL extends DAL {
@@ -17,11 +18,9 @@ public class PersonDAL extends DAL {
 	@Override
 	public Vector<String> columnNames() {
 		Vector<String> r = new Vector<>();
-		r.add("Mã");
-		r.add("Tên");
-		r.add("H�?");
-		r.add("�?ăng nhập");
-		r.add("�?ăng nhập sai");
+		r.add("ID");
+		r.add("First name");
+		r.add("Last name");
 		return r;
 	}
         ResultSet rs = null;
@@ -57,6 +56,15 @@ public class PersonDAL extends DAL {
         }
         return person;
     }
-    
 
+    @Override
+    public boolean add(String id, String[] infos) {
+        String[] infosNew=new String[infos.length+2];
+        for(int i=0;i<infos.length;i++)
+            infosNew[i]=infos[i];
+        Date date=new Date();
+        infosNew[infos.length]=date.getYear()+"-"+date.getMonth()+"-"+date.getDay();
+        infosNew[infos.length+1]=date.getYear()+"-"+date.getMonth()+"-"+date.getDay();
+        return super.add(id, infosNew);
+    }
 }

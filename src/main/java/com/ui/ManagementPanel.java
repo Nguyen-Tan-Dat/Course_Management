@@ -18,9 +18,9 @@ public class ManagementPanel extends SeePanel {
 	public ManagementPanel(BLL control) {
 		super(control);
 		actionBar = new ActionBar(new com.ui.components.Action[]{
-				new com.ui.components.Action("Thêm", GoogleMaterialDesignIcons.ADD, new Color(104, 46, 206), add()),
-				new com.ui.components.Action("Cập nhật", GoogleMaterialDesignIcons.UPDATE, new Color(104, 46, 206), update()),
-				new Action("Xóa", GoogleMaterialDesignIcons.DELETE, new Color(190, 45, 45), delete()),
+				new com.ui.components.Action("Add", GoogleMaterialDesignIcons.ADD, new Color(104, 46, 206), add()),
+				new com.ui.components.Action("Update", GoogleMaterialDesignIcons.UPDATE, new Color(104, 46, 206), update()),
+				new Action("Delete", GoogleMaterialDesignIcons.DELETE, new Color(190, 45, 45), delete()),
 		}, top.getBackground());
 		top.add(actionBar, BorderLayout.WEST);
 	}
@@ -36,15 +36,15 @@ public class ManagementPanel extends SeePanel {
 			public void mouseClicked(MouseEvent e) {
 				int sl = table.getSelectedRow();
 				if (sl == -1) {
-					JOptionPane.showMessageDialog(getRootPane(), "Chọn nhấp chọn dòng sau đó nhấn xóa");
+					JOptionPane.showMessageDialog(getRootPane(), "Chooser and Delete");
 					return;
 				}
-				int ok = JOptionPane.showConfirmDialog(getRootPane(), "Xác nhận xóa", "Xác nhận", JOptionPane.OK_CANCEL_OPTION);
+				int ok = JOptionPane.showConfirmDialog(getRootPane(), "Delete", "Delete", JOptionPane.OK_CANCEL_OPTION);
 				if (ok == 0) {
 					String id = table.getValueAt(sl, 0).toString();
 					if (control.delete(id))
 						MainFrame.setView(newView());
-					else JOptionPane.showMessageDialog(getRootPane(),"Không thể xóa do dữ liệu có ràng buộc");
+					else JOptionPane.showMessageDialog(getRootPane(),"No delete");
 				}
 			}
 		};
@@ -56,7 +56,7 @@ public class ManagementPanel extends SeePanel {
 			public void mouseClicked(MouseEvent e) {
 				int sl = table.getSelectedRow();
 				if (sl == -1) {
-					JOptionPane.showMessageDialog(getRootPane(), "Nhấn chọn dòng sau đó nhấn cập nhật");
+					JOptionPane.showMessageDialog(getRootPane(), "Chooser row and update");
 					return;
 				}
 				String id = table.getValueAt(sl, 0).toString();
@@ -79,7 +79,7 @@ public class ManagementPanel extends SeePanel {
 						}
 					}
 				});
-				MainFrame.openChild("Thông tin cập nhật", field, 350, 500);
+				MainFrame.openChild("Update field", field, 350, 500);
 			}
 		};
 	}
@@ -103,7 +103,7 @@ public class ManagementPanel extends SeePanel {
 						}
 					}
 				});
-				MainFrame.openChild("Thông tin", field, 350, 500);
+				MainFrame.openChild("Field", field, 350, 500);
 			}
 		};
 	}
