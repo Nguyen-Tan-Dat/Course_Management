@@ -1,4 +1,4 @@
-import com.ui.MainFrame;
+import com.gui.MainFrame;
 
 import javax.swing.*;
 

@@ -7,9 +7,8 @@ import com.dto.StudentGrade;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class StudentGradeBL extends BLL {
+public class StudentGradeBL{
 	public StudentGradeBL(){
-		super(new StudentGradeDAL());
 	}
         //==========
         ArrayList<StudentGrade> listStudentGrade = new ArrayList<StudentGrade>();

@@ -2,14 +2,13 @@ package com.dto;
 
 import java.util.Date;
 
-public class Person extends DTO {
+public class Person{
         protected int PersonID;
         protected String Lastname;
         protected String Firstname;
         protected Date HireDate;
         protected Date EnrollmentDate;
     public Person() {
-		super();
 	}
 
     public Person(int PersonID, String Lastname, String Firstname, Date HireDate, Date EnrollmentDate) {

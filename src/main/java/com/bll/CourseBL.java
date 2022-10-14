@@ -5,10 +5,9 @@ import com.dto.Course;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CourseBL extends BLL {
+public class CourseBL{
 
     public CourseBL() {
-        super(new CourseDAL());
     }
     //====================================
     ArrayList<Course> listCourse = new ArrayList<Course>();

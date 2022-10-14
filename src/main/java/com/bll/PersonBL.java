@@ -7,9 +7,8 @@ import com.dto.Person;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PersonBL extends BLL {
+public class PersonBL {
 	public PersonBL(){
-		super(new PersonDAL());
 	}
         
         //==========

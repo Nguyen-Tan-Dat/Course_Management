@@ -12,17 +12,9 @@ import java.util.Vector;
 
 public class PersonDAL extends DAL {
 	public PersonDAL() {
-		super("Person", new Person());
+		super("Person");
 	}
 
-	@Override
-	public Vector<String> columnNames() {
-		Vector<String> r = new Vector<>();
-		r.add("ID");
-		r.add("First name");
-		r.add("Last name");
-		return r;
-	}
         ResultSet rs = null;
     // ===========================
     ArrayList<Person> listPerson = new ArrayList<Person>();
@@ -55,16 +47,5 @@ public class PersonDAL extends DAL {
            break; 
         }
         return person;
-    }
-
-    @Override
-    public boolean add(String id, String[] infos) {
-        String[] infosNew=new String[infos.length+2];
-        for(int i=0;i<infos.length;i++)
-            infosNew[i]=infos[i];
-        Date date=new Date();
-        infosNew[infos.length]=date.getYear()+"-"+date.getMonth()+"-"+date.getDay();
-        infosNew[infos.length+1]=date.getYear()+"-"+date.getMonth()+"-"+date.getDay();
-        return super.add(id, infosNew);
     }
 }

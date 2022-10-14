@@ -1,8 +1,6 @@
 package com.bll;
 
-import com.dal.ConnectSQL;
-import com.dal.ConnectUnit;
-import com.dal.DAL;
+import com.dal.CoreDAL;
 import com.dto.DTO;
 
 import javax.swing.table.DefaultTableModel;
@@ -10,37 +8,28 @@ import java.util.HashMap;
 import java.util.Vector;
 
 
-public class BLL {
+public abstract class BLL {
 
-	protected final com.dal.DAL DAL;
+	protected final CoreDAL dal;
 	protected HashMap<String, DTO> list;
-
-	public void setList(HashMap<String, DTO> list) {
-		this.list = list;
-	}
 
 	protected int newID;
 
-	public BLL(DAL DAL) {
-		this.DAL = DAL;
+	public BLL(CoreDAL dal) {
+		this.dal = dal;
 		readTable();
-		newID = DAL.getMaxId() + 1;
+		newID = this.dal.getMaxId() + 1;
 	}
-	public BLL(String tableName){
-		this(new DAL(tableName));
+	public DTO getDTO(){
+		return this.dal.getDTO();
 	}
-
-	public DTO getObject(String key) {
-		return getList().get(key);
-	}
-
 	public void readTable() {
-		setList(DAL.read());
+		this.list= dal.read();
 	}
 
 	public void add(DTO dto) {
-		if (DAL.add(newID + "", dto.getData())) {
-			getList().put("" + newID++, DTO.getDTO(dto.getData()));
+		if (dal.add(newID + "", dto)) {
+			getList().put("" + newID++, dto);
 		}
 	}
 
@@ -48,13 +37,9 @@ public class BLL {
 		return list;
 	}
 
-	public int getNewID() {
-		return newID;
-	}
-
-	public void add(String id, DTO info) {
-		if (DAL.add(id, info.getData())) {
-			getList().put(id, DTO.getDTO(info.getData()));
+	public void add(String id, DTO dto) {
+		if (dal.add(id, dto)) {
+			getList().put(id, dto);
 		}
 	}
 
@@ -64,14 +49,14 @@ public class BLL {
 	}
 
 	public boolean delete(String id) {
-		if (DAL.delete(id)){
+		if (dal.delete(id)){
 			getList().remove(id);
 			return true;
 		}
 		return false;
 	}
 
-	public HashMap<String, DTO> searchAllAttributes(String info, HashMap<String, DTO> list) {
+	public HashMap<String, DTO> searchAll(String info) {
 		HashMap<String, DTO> temp = new HashMap<>();
 		for (var i : getList().keySet())
 			if (list.get(i).toString().contains(info) || (i + "").contains(info))
@@ -79,15 +64,11 @@ public class BLL {
 		return temp;
 	}
 
-	public HashMap<String, DTO> searchAllAttributes(String info) {
-		return searchAllAttributes(info, this.list);
-	}
-
 	@Override
 	public String toString() {
 		if (getList().isEmpty()) return "";
 		StringBuilder temp = new StringBuilder();
-		for (String i : getList().keySet()) {
+		for (var i : getList().keySet()) {
 			temp.append(i).append(getList().get(i).toString()).append("\n");
 		}
 		return temp.toString();
@@ -98,7 +79,7 @@ public class BLL {
 	}
 
 	public DefaultTableModel toTable(HashMap<String, DTO> list) {
-		return toTable(list, DAL.columnNames());
+		return toTable(list, dal.columnNames());
 	}
 
 	public DefaultTableModel toTable(HashMap<String, DTO> list, Vector<String> header) {
@@ -109,15 +90,5 @@ public class BLL {
 			body.add(row);
 		}
 		return new DefaultTableModel(body, header);
-	}
-
-	public Vector<String> toComboBox() {
-		var names = DAL.columnNames();
-		var result = new Vector<String>();
-		names.add(0, "All field");
-		for (var i : names) {
-			result.add("Search by " + i);
-		}
-		return result;
 	}
 }
